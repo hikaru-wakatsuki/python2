@@ -8,7 +8,7 @@ def test_temperature_input(temp_str: str) -> None:
     check_temperature(temp_int)
 
 
-def check_temperature(temp_int: stintr) -> None:
+def check_temperature(temp_int: int) -> None:
     if temp_int < 0:
         print(f"Error: {temp_int}°C is too cold for plants (min 0°C)")
     elif temp_int > 40:

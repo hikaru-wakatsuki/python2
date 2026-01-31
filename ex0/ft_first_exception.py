@@ -20,7 +20,7 @@ def check_temperature(temp_int: int) -> int:
         return temp_int
 
 
-def ft_first_exception():
+def ft_first_exception() -> None:
     print("=== Garden Temperature Checker ===")
     print()
     test_temperature_input("25")

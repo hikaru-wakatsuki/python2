@@ -47,7 +47,7 @@ def test_error_types(Error: str) -> None:
         print("Caught an error, but program continues!")
 
 
-def ft_different_errors():
+def ft_different_errors() -> None:
     print("=== Garden Error Types Demo ===")
     garden_operations()
     print("All error types tested successfully!")

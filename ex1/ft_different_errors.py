@@ -52,5 +52,6 @@ def ft_different_errors() -> None:
     garden_operations()
     print("All error types tested successfully!")
 
+
 if __name__ == "__main__":
     ft_different_errors()

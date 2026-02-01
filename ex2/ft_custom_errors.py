@@ -4,6 +4,7 @@ class Plant:
         self.height: int = height
         self.age: int = age
 
+
 class GardenError(Exception):
     def __init__(self, message: str = "Caught a garden error:") -> None:
         super().__init__(message)
@@ -41,14 +42,14 @@ def garden_operations() -> None:
         plant: Plant = Plant("tomato", 50, 1000)
         if plant.age > 365:
             raise PlantError()
-    except GardenError as e:
+    except GardenError:
         print(f"Caught a garden error: The {plant.name} plant is wilting!")
     try:
         water_in_tank: int = 0
         if water_in_tank < 1:
             raise WaterError()
-    except GardenError as e:
-        print(f"Caught a garden error: Not enough water in the tank!")
+    except GardenError:
+        print("Caught a garden error: Not enough water in the tank!")
 
 
 def ft_custom_errors():
@@ -57,6 +58,7 @@ def ft_custom_errors():
     garden_operations()
     print()
     print("All custom error types work correctly!")
+
 
 if __name__ == "__main__":
     ft_custom_errors()

@@ -29,15 +29,18 @@ class GardenManager:
                 "water_level": water_level,
                 "sunlight_hours": sunlight_hours
                 }]
+            print(f"Added {plant_name} successfully")
         except PlantError as e:
             print(e)
 
     def water_plants(self, water_tank: int) -> None:
         try:
+            print("Opening watering system")
             self.water_tank += water_tank
             for plant in self.plants:
                 if self.water_tank < 1:
-                    raise WaterError()
+                    raise WaterError("Caught WaterError: "
+                                     "Not enough water in tank")
                 print(f"Watering {plant['name']} - success")
                 self.water_tank -= 1
                 plant["water_level"] += 5
@@ -54,7 +57,7 @@ class GardenManager:
                     plant["water_level"],
                     plant["sunlight_hours"]
                 )
-        except ValueError as e:
+        except GardenError as e:
             print(e)
 
     def check_water_tank(self) -> None:
@@ -72,19 +75,19 @@ class GardenManager:
 def check_plant_health(plant_name: str, water_level: int,
                        sunlight_hours: int) -> None:
     if not plant_name:
-        raise ValueError("Error: Plant name cannot be empty!")
+        raise GardenError("Error: Plant name cannot be empty!")
     if water_level < 1:
-        raise ValueError(f"Error: Water level {water_level} "
-                         f"is too low (min 1)")
+        raise GardenError(f"Error: Water level {water_level} "
+                          f"is too low (min 1)")
     elif water_level > 10:
-        raise ValueError(f"Error: Water level {water_level} "
-                         f"is too high (max 10)")
+        raise GardenError(f"Error: Water level {water_level} "
+                          f"is too high (max 10)")
     if sunlight_hours < 2:
-        raise ValueError(f"Error: Sunlight hours {sunlight_hours} "
-                         f"is too low (min 2)")
+        raise GardenError(f"Error: Sunlight hours {sunlight_hours} "
+                          f"is too low (min 2)")
     elif sunlight_hours > 12:
-        raise ValueError(f"Error: Sunlight hours {sunlight_hours} "
-                         f"is too high (max 12)")
+        raise GardenError(f"Error: Sunlight hours {sunlight_hours} "
+                          f"is too high (max 12)")
     print(f"{plant_name}: healthy (water: {water_level}, "
           f"sun: {sunlight_hours})")
 

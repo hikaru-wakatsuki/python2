@@ -1,26 +1,31 @@
 def garden_operations() -> None:
+    print("Testing ValueError...")
     try:
         int("abc")
-    except ValueError:
-        test_error_types("ValueError")
+    except ValueError as e:
+        print(f"Caught ValueError: {e}")
     print()
+    print("Testing ZeroDivisionError...")
     try:
         2 // 0
-    except ZeroDivisionError:
-        test_error_types("ZeroDivisionError")
+    except ZeroDivisionError as e:
+        print(f"Caught ZeroDivisionError: {e}")
     print()
+    print("Testing FileNotFoundError...")
     try:
         f: object = open("missing.txt")
         f.close()
-    except FileNotFoundError:
-        test_error_types("FileNotFoundError")
+    except FileNotFoundError as e:
+        print(f"Caught FileNotFoundError: {e}")
     print()
+    print("Testing KeyError...")
     try:
         plant: dict = {"rose": "red"}
         plant["missing_plant"]
-    except KeyError:
-        test_error_types("KeyError")
+    except KeyError as e:
+        print(f"Caught KeyError: {e}")
     print()
+    print("Testing multiple errors together...")
     try:
         int("abc")
         2 // 0
@@ -29,27 +34,19 @@ def garden_operations() -> None:
         plant: dict = {"rose": "red"}
         plant["missing_plant"]
     except (ValueError, ZeroDivisionError, FileNotFoundError, KeyError):
-        test_error_types("multiple errors together")
+        print("Caught an error, but program continues!")
     print()
 
 
-def test_error_types(Error: str) -> None:
-    print(f"Testing {Error}...")
-    if Error == "ValueError":
-        print("Caught ValueError: invalid literal for int()")
-    elif Error == "ZeroDivisionError":
-        print("Caught ZeroDivisionError: division by zero")
-    elif Error == "FileNotFoundError":
-        print("Caught FileNotFoundError: No such file 'missing.txt'")
-    elif Error == "KeyError":
-        print("Caught KeyError: 'missing_plant'")
-    elif Error == "multiple errors together":
-        print("Caught an error, but program continues!")
+def test_error_types() -> None:
+    print()
+    garden_operations()
+    print()
 
 
 def ft_different_errors() -> None:
     print("=== Garden Error Types Demo ===")
-    garden_operations()
+    test_error_types()
     print("All error types tested successfully!")
 
 

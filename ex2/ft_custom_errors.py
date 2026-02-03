@@ -52,7 +52,7 @@ def garden_operations() -> None:
         print("Caught a garden error: Not enough water in the tank!")
 
 
-def ft_custom_errors():
+def ft_custom_errors() -> None:
     print("=== Custom Garden Errors Demo ===")
     print()
     garden_operations()
